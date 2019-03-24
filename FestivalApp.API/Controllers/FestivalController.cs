@@ -3,6 +3,7 @@ using FestivalApp.API.DTO;
 using FestivalApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace FestivalApp.API.Controllers
@@ -23,6 +24,16 @@ namespace FestivalApp.API.Controllers
         {
             var festivals = festivalService.GetAll();
             var festivalsDTO = Mapper.Map<IEnumerable<Festival>, IEnumerable<FestivalDTO>>(festivals);
+            return Ok(festivalsDTO);
+        }
+
+        [HttpGet]
+        [Route("festivals/festival-type/{id:int}")]
+        public IHttpActionResult GetAllFromFestivalType(int id)
+        {
+            var festivals = festivalService.GetAll();
+            var festivalsFromType = festivals.Where(x => x.FestivalTypeId == id);
+            var festivalsDTO = Mapper.Map<IEnumerable<Festival>, IEnumerable<FestivalDTO>>(festivalsFromType);
             return Ok(festivalsDTO);
         }
 
