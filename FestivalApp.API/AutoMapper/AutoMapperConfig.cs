@@ -12,6 +12,9 @@ namespace FestivalApp.API.AutoMapper
             {
                 config.CreateMap<FestivalType, FestivalTypeDTO>()
                     .ReverseMap();
+
+                config.CreateMap<Festival, FestivalDTO>()
+                    .ReverseMap();
             });
         }
 

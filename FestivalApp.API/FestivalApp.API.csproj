@@ -107,7 +107,9 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="Controllers\FestivalController.cs" />
     <Compile Include="Controllers\FestivalTypeController.cs" />
+    <Compile Include="DTO\FestivalDTO.cs" />
     <Compile Include="DTO\FestivalTypeDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

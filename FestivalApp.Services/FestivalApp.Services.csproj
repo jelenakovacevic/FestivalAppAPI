@@ -68,6 +68,7 @@
     <Compile Include="Festival.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="FestivalService.cs" />
     <Compile Include="FestivalType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
