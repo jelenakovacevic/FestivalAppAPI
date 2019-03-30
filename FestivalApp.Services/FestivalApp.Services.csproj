@@ -68,11 +68,11 @@
     <Compile Include="Festival.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="FestivalService.cs" />
+    <Compile Include="Services\FestivalService.cs" />
     <Compile Include="FestivalType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="FestivalTypeService.cs" />
+    <Compile Include="Services\FestivalTypeService.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +95,7 @@
     <Compile Include="UserFestivalType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

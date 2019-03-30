@@ -59,7 +59,7 @@ namespace FestivalApp.API.Controllers
                 {
                     var festival = Mapper.Map<FestivalDTO, Festival>(festivalDTO);
                     festivalService.Create(festival);
-                    return Ok("Festival type succesfully created");
+                    return Ok("Festival succesfully created");
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +82,7 @@ namespace FestivalApp.API.Controllers
                 {
                     var festival = Mapper.Map<FestivalDTO, Festival>(festivalDTO);
                     festivalService.Update(festival);
-                    return Ok("Festival type succesfully updated.");
+                    return Ok("Festival succesfully updated.");
                 }
                 catch (Exception ex)
                 {
@@ -106,7 +106,7 @@ namespace FestivalApp.API.Controllers
                     return NotFound();
 
                 festivalService.Delete(id);
-                return Ok("Festival type succesfully deleted.");
+                return Ok("Festival succesfully deleted.");
             }
             catch (Exception ex)
             {

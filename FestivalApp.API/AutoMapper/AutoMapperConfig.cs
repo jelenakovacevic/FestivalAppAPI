@@ -16,6 +16,9 @@ namespace FestivalApp.API.AutoMapper
                 config.CreateMap<Festival, FestivalDTO>()
                     .ForMember(x => x.Rating, y => y.MapFrom(e => e.Rating == null ? "0" : e.Rating))
                     .ReverseMap();
+
+                config.CreateMap<User, UserDTO>()
+                    .ReverseMap();
             });
         }
 

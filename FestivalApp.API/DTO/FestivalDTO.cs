@@ -15,6 +15,8 @@ namespace FestivalApp.API.DTO
         public string Description { get; set; }
         public string Rating { get; set; }
         public string NumberOfRates { get; set; }
+        public string Image { get; set; }
+        public string Address { get; set; }
         [Required]
         public int FestivalTypeId { get; set; }
     }
