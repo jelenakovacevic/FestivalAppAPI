@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FestivalApp.API", "FestivalApp.API\FestivalApp.API.csproj", "{EBA67267-A110-4035-8C76-7F7AB899E9BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FestivalApp.Services", "FestivalApp.Services\FestivalApp.Services.csproj", "{D89A881A-FC28-4802-B12C-BD055BEA8808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FestivalApp.Services", "FestivalApp.Services\FestivalApp.Services.csproj", "{7CBC0796-7C34-4ACE-9E79-E3DC5818570B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{EBA67267-A110-4035-8C76-7F7AB899E9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBA67267-A110-4035-8C76-7F7AB899E9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBA67267-A110-4035-8C76-7F7AB899E9BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D89A881A-FC28-4802-B12C-BD055BEA8808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D89A881A-FC28-4802-B12C-BD055BEA8808}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D89A881A-FC28-4802-B12C-BD055BEA8808}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D89A881A-FC28-4802-B12C-BD055BEA8808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBC0796-7C34-4ACE-9E79-E3DC5818570B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBC0796-7C34-4ACE-9E79-E3DC5818570B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBC0796-7C34-4ACE-9E79-E3DC5818570B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBC0796-7C34-4ACE-9E79-E3DC5818570B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

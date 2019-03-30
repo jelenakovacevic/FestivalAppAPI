@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FestivalApp.Services
 {
@@ -10,7 +7,7 @@ namespace FestivalApp.Services
     {
         public IEnumerable<FestivalType> GetAll()
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 return db.FestivalTypes.ToList();
             }
@@ -18,15 +15,15 @@ namespace FestivalApp.Services
 
         public FestivalType Get(int id)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
-                return db.FestivalTypes.FirstOrDefault(x=> x.Id == id);
+                return db.FestivalTypes.FirstOrDefault(x => x.Id == id);
             }
         }
 
         public void Create(FestivalType festivalType)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 db.FestivalTypes.Add(festivalType);
                 db.SaveChanges();
@@ -35,7 +32,7 @@ namespace FestivalApp.Services
 
         public void Delete(int id)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 var festivalType = db.FestivalTypes.FirstOrDefault(x => x.Id == id);
                 db.FestivalTypes.Remove(festivalType);

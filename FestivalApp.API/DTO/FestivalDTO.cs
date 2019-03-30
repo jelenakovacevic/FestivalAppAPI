@@ -26,7 +26,6 @@ namespace FestivalApp.API.DTO
         public string TimeStart { get; set; }
         [Required]
         public int FestivalTypeId { get; set; }
-        public List<UserDTO> UserAttendings { get; set; }
-        //public int NumberOfAttendees { get; set; }
+     
     }
 }

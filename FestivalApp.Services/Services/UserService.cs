@@ -8,7 +8,7 @@ namespace FestivalApp.Services
     {
         public IEnumerable<User> GetAll()
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 return db.Users.ToList();
             }
@@ -16,7 +16,7 @@ namespace FestivalApp.Services
 
         public User Get(int id)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 return db.Users.FirstOrDefault(x => x.Id == id);
             }
@@ -24,7 +24,7 @@ namespace FestivalApp.Services
 
         public void Create(User user)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 db.Users.Add(user);
                 db.SaveChanges();
@@ -33,7 +33,7 @@ namespace FestivalApp.Services
 
         public void Update(User user)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 db.Users.AddOrUpdate(user);
                 db.SaveChanges();
@@ -42,7 +42,7 @@ namespace FestivalApp.Services
 
         public void Delete(int id)
         {
-            using (var db = new FestivalAppDB())
+            using (var db = new DataContext())
             {
                 var user = db.Users.FirstOrDefault(x => x.Id == id);
                 db.Users.Remove(user);
