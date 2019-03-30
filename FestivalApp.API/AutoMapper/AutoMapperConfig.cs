@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FestivalApp.API.DTO;
 using FestivalApp.Services;
+using System.Linq;
 
 namespace FestivalApp.API.AutoMapper
 {
@@ -14,8 +15,8 @@ namespace FestivalApp.API.AutoMapper
                     .ReverseMap();
 
                 config.CreateMap<Festival, FestivalDTO>()
-                    .ForMember(x => x.Rating, y => y.MapFrom(e => e.Rating == null ? "0" : e.Rating))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember(x => x.Rating, y => y.MapFrom(e => e.Rating == null ? "0" : e.Rating));
 
                 config.CreateMap<User, UserDTO>()
                     .ReverseMap();

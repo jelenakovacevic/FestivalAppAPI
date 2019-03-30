@@ -46,7 +46,7 @@ namespace FestivalApp.Services
             {
                 var festival = db.Festivals.FirstOrDefault(x => x.Id == id);
                 db.Festivals.Remove(festival);
-                db.SaveChanges();
+                db.SaveChanges();               
             }
         }
     }
