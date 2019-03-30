@@ -30,6 +30,9 @@ namespace FestivalApp.Services
         public string Rating { get; set; }
         public Nullable<long> NumberOfRates { get; set; }
         public long FestivalTypeId { get; set; }
+        public string Image { get; set; }
+        public string Address { get; set; }
+        public string TimeStart { get; set; }
     
         public virtual FestivalType FestivalType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

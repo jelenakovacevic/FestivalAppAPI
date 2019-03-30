@@ -19,6 +19,9 @@
           <Property Name="Rating" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="NumberOfRates" Type="integer" />
           <Property Name="FestivalTypeId" Type="integer" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Address" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="TimeStart" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="FestivalAttendings">
           <Key>
@@ -34,6 +37,7 @@
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -50,6 +54,7 @@
           <Property Name="Country" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Address" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Role" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="UserFestivalTypes">
           <Key>
@@ -149,6 +154,9 @@
           <Property Name="Rating" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="NumberOfRates" Type="Int64" />
           <Property Name="FestivalTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeStart" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FestivalType" Relationship="Self.FK_Festival_0_0" FromRole="Festival" ToRole="FestivalType" />
           <NavigationProperty Name="Users" Relationship="Self.FestivalAttendings" FromRole="Festival" ToRole="User" />
         </EntityType>
@@ -158,6 +166,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Festivals" Relationship="Self.FK_Festival_0_0" FromRole="FestivalType" ToRole="Festival" />
           <NavigationProperty Name="UserFestivalTypes" Relationship="Self.FK_UserFestivalTypes_0_0" FromRole="FestivalType" ToRole="UserFestivalTypes" />
         </EntityType>
@@ -176,6 +185,7 @@
           <Property Name="Country" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Festivals" Relationship="Self.FestivalAttendings" FromRole="User" ToRole="Festival" />
         </EntityType>
         <EntityType Name="UserFestivalType">
@@ -252,6 +262,9 @@
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="NumberOfRates" ColumnName="NumberOfRates" />
                 <ScalarProperty Name="FestivalTypeId" ColumnName="FestivalTypeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -260,6 +273,7 @@
               <MappingFragment StoreEntitySet="FestivalType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -277,6 +291,7 @@
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
