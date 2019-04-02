@@ -12,10 +12,12 @@ namespace FestivalApp.API.Controllers
     public class FestivalController : ApiController
     {
         private FestivalService festivalService;
+        private UserService userService;
 
         public FestivalController()
         {
             festivalService = new FestivalService();
+            userService = new UserService();
         }
 
         [HttpGet]
@@ -71,6 +73,35 @@ namespace FestivalApp.API.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        [HttpPost]
+        [Route("festivals")]
+        public IHttpActionResult Attend(int userId, int festivalId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var festival = festivalService.Get(festivalId);
+                    var user = userService.Get(userId);
+                    if (festival == null || user == null)
+                        return NotFound();
+
+                    festivalService.Attend(userId, festivalId);
+                    return Ok("You are now attending this festival.");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Something went wrong.");
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+
 
         [HttpPut]
         [Route("festivals")]

@@ -55,6 +55,8 @@ namespace FestivalApp.Services
 
         public string Image { get; set; }
 
+        public string AboutMe { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Festival> Festivals { get; set; }
 
