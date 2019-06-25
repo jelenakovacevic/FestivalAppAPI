@@ -23,5 +23,6 @@ namespace FestivalApp.API.DTO
         [Required]
         public string Role { get; set; }
         public string Image { get; set; }
+        public string AboutMe { get; set; }
     }
 }

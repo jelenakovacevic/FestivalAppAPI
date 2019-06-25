@@ -102,5 +102,21 @@ namespace UserApp.API.Controllers
                 return BadRequest("Something went wrong.");
             }
         }
+
+        [HttpGet]
+        [Route("users/login")]
+        public IHttpActionResult Login(string username, string password)
+        {
+            try
+            {
+                var userExists = userService.Login(username, password);
+                
+                return Ok(userExists);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Something went wrong.");
+            }
+        }
     }
 }

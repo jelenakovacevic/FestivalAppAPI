@@ -127,7 +127,7 @@ namespace FestivalApp.API.Controllers
         }
 
         [HttpDelete]
-        [Route("festivals")]
+        [Route("festivals/{id:int}")]
         public IHttpActionResult Delete(int id)
         {
             try
@@ -141,7 +141,7 @@ namespace FestivalApp.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Something went wrong.");
+                return BadRequest("Could not delete festival.");
             }
         }
     }

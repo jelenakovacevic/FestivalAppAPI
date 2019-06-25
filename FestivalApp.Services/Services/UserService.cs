@@ -49,5 +49,16 @@ namespace FestivalApp.Services
                 db.SaveChanges();
             }
         }
+
+        public bool Login(string username, string password)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+                if (user == null)
+                    return false;
+                return true;
+            }
+        }
     }
 }
