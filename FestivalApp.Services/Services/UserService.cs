@@ -22,6 +22,14 @@ namespace FestivalApp.Services
             }
         }
 
+        public User GetByUsername(string username)
+        {
+            using (var db = new DataContext())
+            {
+                return db.Users.FirstOrDefault(x => x.Username == username);
+            }
+        }
+
         public void Create(User user)
         {
             using (var db = new DataContext())

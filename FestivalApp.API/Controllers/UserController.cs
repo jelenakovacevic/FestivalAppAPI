@@ -46,7 +46,13 @@ namespace UserApp.API.Controllers
             {
                 try
                 {
-                    var user = Mapper.Map<UserDTO, User>(userDTO);
+                    var user = userService.GetByUsername(userDTO.Username);
+                    if(user != null)
+                    {
+                        return BadRequest("Username already exists.");
+                    }
+
+                    user = Mapper.Map<UserDTO, User>(userDTO);
                     userService.Create(user);
                     return Ok("User succesfully created");
                 }
