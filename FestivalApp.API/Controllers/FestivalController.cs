@@ -3,6 +3,7 @@ using FestivalApp.API.DTO;
 using FestivalApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web.Http;
 
@@ -75,33 +76,47 @@ namespace FestivalApp.API.Controllers
         }
 
         [HttpPost]
-        [Route("festivals")]
-        public IHttpActionResult Attend(int userId, int festivalId)
+        [Route("festivals/attend")]
+        public IHttpActionResult Attend(AttendDTO attendDTO)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    var festival = festivalService.Get(festivalId);
-                    var user = userService.Get(userId);
-                    if (festival == null || user == null)
-                        return NotFound();
+                var user = userService.GetByUsername(attendDTO.Username);
+                var festival = festivalService.Get(attendDTO.Id);
+                if (festival == null || user == null)
+                    return NotFound();
 
-                    festivalService.Attend(userId, festivalId);
-                    return Ok("You are now attending this festival.");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest("Something went wrong.");
-                }
+                festivalService.Attend(user.Id, festival.Id);
+                return Ok("You are now attending this festival.");
             }
-            else
+            catch (DbUpdateException ex)
             {
-                return BadRequest(ModelState);
+                return BadRequest("You are already attending this festival.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Something went wrong.");
             }
         }
 
+        [HttpPut]
+        [Route("festivals/rate")]
+        public IHttpActionResult Rate(int rate, int festivalId)
+        {
+            try
+            {
+                var festival = festivalService.Get(festivalId);
+                if (festival == null)
+                    return NotFound();
 
+                festivalService.Rate(rate, festivalId);
+                return Ok("You have successfully rated this festival.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Something went wrong.");
+            }
+        }
 
         [HttpPut]
         [Route("festivals")]

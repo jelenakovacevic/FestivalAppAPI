@@ -3,6 +3,7 @@ using FestivalApp.API.DTO;
 using FestivalApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Web.Http;
 
 namespace FestivalApp.API.Controllers
@@ -11,10 +12,12 @@ namespace FestivalApp.API.Controllers
     public class FestivalTypeController : ApiController
     {
         private FestivalTypeService festivalTypeService;
+        private UserService userService;
 
         public FestivalTypeController()
         {
-            festivalTypeService = new FestivalTypeService();    
+            festivalTypeService = new FestivalTypeService();
+            userService = new UserService();
         }
 
         [HttpGet]
@@ -38,6 +41,23 @@ namespace FestivalApp.API.Controllers
             return Ok(festivalTypeDTO);
         }
 
+        [HttpGet]
+        [Route("festival-types/favorites")]
+        public IHttpActionResult GetFavorites(string username)
+        {
+            try
+            {
+                var festivalTypes = festivalTypeService.GetFavorites(username);
+                var festivalTypesDTO = Mapper.Map<IEnumerable<FestivalType>, IEnumerable<FestivalTypeDTO>>(festivalTypes);
+
+                return Ok(festivalTypesDTO);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exception");
+            }
+        }
+
         [HttpPost]
         [Route("festival-types")]
         public IHttpActionResult Create(FestivalTypeDTO festivalTypeDTO)
@@ -47,6 +67,48 @@ namespace FestivalApp.API.Controllers
                 var festivalType = Mapper.Map<FestivalTypeDTO, FestivalType>(festivalTypeDTO);
                 festivalTypeService.Create(festivalType);
                 return Ok("Festival type succesfully created");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exception");
+            }
+        }
+
+        [HttpPost]
+        [Route("festival-types/add-favorite")]
+        public IHttpActionResult AddToFavorites(UserFestivalTypeDTO userFestivalTypeDto)
+        {
+            try
+            {
+                var user = userService.GetByUsername(userFestivalTypeDto.Username);
+                festivalTypeService.AddToFavorites(user.Id, userFestivalTypeDto.Id);
+
+                return Ok("Festival type added to favorites.");
+            }
+            catch(DbUpdateException ex)
+            {
+                return BadRequest("Festival type is already in favorites.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Exception");
+            }
+        }
+
+        [HttpPost]
+        [Route("festival-types/delete-favorite")]
+        public IHttpActionResult RemoveFromFavorite(UserFestivalTypeDTO userFestivalTypeDto)
+        {
+            try
+            {
+                var user = userService.GetByUsername(userFestivalTypeDto.Username);
+                festivalTypeService.RemoveFromFavorites(user.Id, userFestivalTypeDto.Id);
+
+                return Ok("Festival type removed from favorites.");
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest("Festival type is not in favorites.");
             }
             catch (Exception ex)
             {
