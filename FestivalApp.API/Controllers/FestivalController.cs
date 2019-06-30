@@ -101,7 +101,7 @@ namespace FestivalApp.API.Controllers
 
         [HttpPut]
         [Route("festivals/rate")]
-        public IHttpActionResult Rate(int rate, int festivalId)
+        public IHttpActionResult Rate(float rate, int festivalId)
         {
             try
             {

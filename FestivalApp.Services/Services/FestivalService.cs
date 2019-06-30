@@ -62,15 +62,15 @@ namespace FestivalApp.Services
             }
         }
 
-        public void Rate(int rate, int festivalId)
+        public void Rate(float rate, int festivalId)
         {
             using (var db = new DataContext())
             {
                 var festival = db.Festivals.FirstOrDefault(x => x.Id == festivalId);
                 var numberOfRates = festival.NumberOfRates == null ? 0 : festival.NumberOfRates;
                 var currentRating = string.IsNullOrEmpty(festival.Rating) ? "0" : festival.Rating;
-                var rating = Convert.ToDouble(currentRating) + rate;
-                var numberOfRatesToUpdate = numberOfRates + 1;
+                var rating = Convert.ToDouble(currentRating) * numberOfRates + rate;
+                var numberOfRatesToUpdate = numberOfRates + 1;            
                 var ratingForUpdate = rating / numberOfRatesToUpdate;
                 festival.Rating = ratingForUpdate.ToString();
                 festival.NumberOfRates = numberOfRatesToUpdate;
