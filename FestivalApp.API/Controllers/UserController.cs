@@ -38,6 +38,18 @@ namespace UserApp.API.Controllers
             return Ok(userDTO);
         }
 
+        [HttpGet]
+        [Route("users/username")]
+        public IHttpActionResult GetByUsername(string username)
+        {
+            var user = userService.GetByUsername(username);
+            if (user == null)
+                return NotFound();
+
+            var userDTO = Mapper.Map<User, UserDTO>(user);
+            return Ok(userDTO);
+        }
+
         [HttpPost]
         [Route("users")]
         public IHttpActionResult Create(UserDTO userDTO)
@@ -68,15 +80,57 @@ namespace UserApp.API.Controllers
         }
 
         [HttpPut]
-        [Route("users")]
-        public IHttpActionResult Update(UserDTO userDTO)
+        [Route("users/change-password")]
+        public IHttpActionResult ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var user = Mapper.Map<UserDTO, User>(userDTO);
+                    var user = userService.GetByUsername(changePasswordDTO.Username);
+                    if (user == null)
+                        return NotFound();
+
+                    if (user.Password != changePasswordDTO.OldPassword)
+                        return BadRequest("Wrong old password.");
+
+                    userService.ChangePassword(changePasswordDTO.Username, changePasswordDTO.NewPassword);
+
+                    return Ok("Password successfully changed.");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Something went wrong.");
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPut]
+        [Route("users")]
+        public IHttpActionResult Update(UserUpdateDTO userDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var user = userService.GetByUsername(userDTO.Username);
+                    if (user == null)
+                        return NotFound();
+
+                    user.Firstname = userDTO.Firstname;
+                    user.Lastname = userDTO.Lastname;
+                    user.Age = userDTO.Age;
+                    user.City = userDTO.City;
+                    user.Country = userDTO.Country;
+                    user.Address = userDTO.Address;
+                    user.AboutMe = userDTO.AboutMe;
+
                     userService.Update(user);
+
                     return Ok("User succesfully updated.");
                 }
                 catch (Exception ex)

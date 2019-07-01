@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
@@ -66,6 +67,16 @@ namespace FestivalApp.Services
                 if (user == null)
                     return false;
                 return true;
+            }
+        }
+
+        public void ChangePassword(string username, string password)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Username == username);
+                user.Password = password;
+                db.SaveChanges();
             }
         }
     }
