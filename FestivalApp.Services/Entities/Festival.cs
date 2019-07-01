@@ -59,5 +59,7 @@ namespace FestivalApp.Services
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+
+        public virtual ICollection<User> UserRated { get; set; }
     }
 }

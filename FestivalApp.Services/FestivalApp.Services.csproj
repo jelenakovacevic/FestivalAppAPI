@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201904022110145_UserAboutMeAdded.Designer.cs">
       <DependentUpon>201904022110145_UserAboutMeAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907012303277_UserFestivalRatingTable.cs" />
+    <Compile Include="Migrations\201907012303277_UserFestivalRatingTable.Designer.cs">
+      <DependentUpon>201907012303277_UserFestivalRatingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FestivalService.cs" />
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904022110145_UserAboutMeAdded.resx">
       <DependentUpon>201904022110145_UserAboutMeAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907012303277_UserFestivalRatingTable.resx">
+      <DependentUpon>201907012303277_UserFestivalRatingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

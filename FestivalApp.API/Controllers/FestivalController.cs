@@ -101,16 +101,21 @@ namespace FestivalApp.API.Controllers
 
         [HttpPut]
         [Route("festivals/rate")]
-        public IHttpActionResult Rate(float rate, int festivalId)
+        public IHttpActionResult Rate(float rate, int festivalId, string username)
         {
             try
             {
+                var user = userService.GetByUsername(username);
                 var festival = festivalService.Get(festivalId);
-                if (festival == null)
+                if (festival == null || user == null)
                     return NotFound();
 
-                festivalService.Rate(rate, festivalId);
+                festivalService.Rate(rate, festivalId, username);
                 return Ok("You have successfully rated this festival.");
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest("You have already rated this festival.");
             }
             catch (Exception ex)
             {

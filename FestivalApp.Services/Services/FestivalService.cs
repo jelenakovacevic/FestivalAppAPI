@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
@@ -62,11 +63,11 @@ namespace FestivalApp.Services
             }
         }
 
-        public void Rate(float rate, int festivalId)
+        public void Rate(float rate, int festivalId, string username)
         {
             using (var db = new DataContext())
             {
-                var festival = db.Festivals.FirstOrDefault(x => x.Id == festivalId);
+                var festival = db.Festivals.Include("UserRated").FirstOrDefault(x => x.Id == festivalId);
                 var numberOfRates = festival.NumberOfRates == null ? 0 : festival.NumberOfRates;
                 var currentRating = string.IsNullOrEmpty(festival.Rating) ? "0" : festival.Rating;
                 var rating = Convert.ToDouble(currentRating) * numberOfRates + rate;
@@ -74,6 +75,10 @@ namespace FestivalApp.Services
                 var ratingForUpdate = rating / numberOfRatesToUpdate;
                 festival.Rating = ratingForUpdate.ToString();
                 festival.NumberOfRates = numberOfRatesToUpdate;
+                var user = db.Users.FirstOrDefault(x => x.Username == username);
+                if (festival.UserRated.Where(x => x.Id == user.Id).FirstOrDefault() != null)
+                    throw new DbUpdateException();
+                festival.UserRated.Add(user);
                 db.SaveChanges();
             }
         }

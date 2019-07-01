@@ -46,6 +46,11 @@ namespace FestivalApp.Services
             modelBuilder.Entity<User>()
                 .Property(e => e.Image)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.RatedFestivals)
+                .WithMany(e => e.UserRated)
+                .Map(m => m.ToTable("UserFestivalRating").MapLeftKey("UserId").MapRightKey("FestivalId"));
         }
     }
 }
